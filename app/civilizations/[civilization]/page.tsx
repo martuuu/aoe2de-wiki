@@ -9,26 +9,23 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-// Define la interfaz para los parámetros de la página
-interface PageProps {
-  params: {
-    civilization: string
-  }
-}
-
-// Función para generar metadata dinámicos
 export async function generateMetadata({ 
   params 
-}: PageProps): Promise<Metadata> {
+}: { 
+  params: { civilization: string } 
+}): Promise<Metadata> {
   return {
     title: `${params.civilization} - Guía de Age of Empires II`,
     description: `Información completa sobre la civilización ${params.civilization} en Age of Empires II`,
   }
 }
 
-// Componente de página
-export default async function CivilizationPage({ params }: PageProps) {
-  // Extraer el parámetro de civilización
+// Elimina completamente la interfaz y utiliza la definición directamente
+export default async function CivilizationPage({ 
+  params 
+}: { 
+  params: { civilization: string } 
+}) {
   const { civilization } = params
   
   // Aquí normalmente obtendrías datos sobre la civilización
