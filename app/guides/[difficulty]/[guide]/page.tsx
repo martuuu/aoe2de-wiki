@@ -4,7 +4,7 @@ import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
-export default function GuidePage({ params }: { params: { difficulty: string; guide: string } }) {
+export default function GuidePage({ params }: { params: { difficulty: any; guide: any } }) {
   const { difficulty, guide } = params
 
   // Esto sería reemplazado con datos reales de una base de datos o API
