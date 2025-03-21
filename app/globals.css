@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 14% 30%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 14% 30%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 14% 30%;
+
+    --primary: 230 73% 59%; /* Royal Blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 186 92% 42%; /* Robin's Egg Blue */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 33% 95%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 224 67% 82%; /* Perano */
+    --accent-foreground: 230 73% 59%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 230 73% 59%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 230 73% 59%; /* Royal Blue */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 186 92% 42%; /* Robin's Egg Blue */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 224 67% 82%; /* Perano */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 230 73% 59%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
