@@ -1,38 +1,52 @@
-import Link from "next/link"
-import { ArrowLeft, Shield, Swords, Target } from "lucide-react"
+import TransitionLink from "@/components/transition-link";
+import { ArrowLeft, Shield, Swords, Target } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function GuidesPage() {
   const difficultyGuides = [
     {
       level: "Principiante",
       icon: Shield,
-      description: "Perfecto para nuevos jugadores que están aprendiendo los conceptos básicos de Age of Empires II",
+      description:
+        "Perfecto para nuevos jugadores que están aprendiendo los conceptos básicos de Age of Empires II",
       guides: [
         {
           id: "fast-castle",
           title: "Castillo Rápido",
-          description: "Una construcción económica segura para llegar rápidamente a la Edad de los Castillos",
+          description:
+            "Una construcción económica segura para llegar rápidamente a la Edad de los Castillos",
         },
         {
           id: "scout-rush",
           title: "Ataque con Exploradores",
           description: "Agresión temprana con Caballería Exploradora",
         },
-        { id: "archer-build", title: "Construcción de Arqueros", description: "Apertura básica centrada en arqueros" },
+        {
+          id: "archer-build",
+          title: "Construcción de Arqueros",
+          description: "Apertura básica centrada en arqueros",
+        },
       ],
     },
     {
       level: "Intermedio",
       icon: Swords,
-      description: "Para jugadores familiarizados con el juego que buscan mejorar sus habilidades",
+      description:
+        "Para jugadores familiarizados con el juego que buscan mejorar sus habilidades",
       guides: [
         {
           id: "drush-fc",
           title: "Drush a Castillo Rápido",
-          description: "Presión temprana con milicia hacia la Edad de los Castillos",
+          description:
+            "Presión temprana con milicia hacia la Edad de los Castillos",
         },
         {
           id: "men-at-arms",
@@ -42,14 +56,16 @@ export default function GuidesPage() {
         {
           id: "castle-drop",
           title: "Colocación de Castillo",
-          description: "Ubicación estratégica de castillos para control del mapa",
+          description:
+            "Ubicación estratégica de castillos para control del mapa",
         },
       ],
     },
     {
       level: "Avanzado",
       icon: Target,
-      description: "Estrategias complejas para jugadores experimentados que buscan dominar el juego",
+      description:
+        "Estrategias complejas para jugadores experimentados que buscan dominar el juego",
       guides: [
         {
           id: "hybrid-maps",
@@ -61,27 +77,33 @@ export default function GuidesPage() {
           title: "Estrategias para Arena",
           description: "Construcciones especializadas para mapas cerrados",
         },
-        { id: "water-control", title: "Control Naval", description: "Dominando el juego naval" },
+        {
+          id: "water-control",
+          title: "Control Naval",
+          description: "Dominando el juego naval",
+        },
       ],
     },
-  ]
+  ];
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
-        <Link href="/">
+        <TransitionLink href="/">
           <Button variant="ghost" className="flex items-center gap-2 pl-0">
             <ArrowLeft className="h-4 w-4" />
             Volver al Inicio
           </Button>
-        </Link>
+        </TransitionLink>
       </div>
 
       <header className="mb-8 text-center">
-        <h1 className="mb-4 text-3xl font-bold text-primary md:text-4xl">Guías Paso a Paso</h1>
+        <h1 className="mb-4 text-3xl font-bold text-primary md:text-4xl">
+          Guías Paso a Paso
+        </h1>
         <p className="mx-auto max-w-2xl text-muted-foreground">
-          Selecciona un nivel de dificultad y elige entre nuestras detalladas órdenes de construcción para mejorar tu
-          juego
+          Selecciona un nivel de dificultad y elige entre nuestras detalladas
+          órdenes de construcción para mejorar tu juego
         </p>
       </header>
 
@@ -96,7 +118,10 @@ export default function GuidesPage() {
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {difficulty.guides.map((guide) => (
-                <Link key={guide.id} href={`/guides/${difficulty.level.toLowerCase()}/${guide.id}`}>
+                <TransitionLink
+                  key={guide.id}
+                  href={`/guides/${difficulty.level.toLowerCase()}/${guide.id}`}
+                >
                   <Card className="h-full transition-all hover:border-primary hover:shadow-md">
                     <CardHeader>
                       <CardTitle>{guide.title}</CardTitle>
@@ -108,13 +133,12 @@ export default function GuidesPage() {
                       </Button>
                     </CardContent>
                   </Card>
-                </Link>
+                </TransitionLink>
               ))}
             </div>
           </section>
         ))}
       </div>
     </div>
-  )
+  );
 }
-

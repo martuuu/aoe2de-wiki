@@ -75,3 +75,41 @@
   }
 }
 
+/* Estilos para View Transitions API */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slide-from-right {
+  from { transform: translateX(30px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slide-to-left {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(-30px); opacity: 0; }
+}
+
+::view-transition-old(root) {
+  animation: 250ms fade-out ease forwards;
+}
+
+::view-transition-new(root) {
+  animation: 400ms fade-in ease forwards;
+}
+
+/* Animaciones personalizadas para rutas específicas */
+::view-transition-old(route-) {
+  animation: 250ms slide-to-left ease forwards;
+}
+
+::view-transition-new(route-) {
+  animation: 400ms slide-from-right ease forwards;
+}
+

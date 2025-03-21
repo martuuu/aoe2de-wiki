@@ -1,12 +1,13 @@
 "use client"
 
-import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { BookOpen, Home, Shield, Swords, Lightbulb, Crosshair } from "lucide-react"
+import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import TransitionLink from "./transition-link"
 
 export function Sidebar() {
   const pathname = usePathname()
@@ -16,6 +17,7 @@ export function Sidebar() {
       icon: Home,
       href: "/",
       label: "Inicio",
+      transitionName: "route-home"
     },
     {
       icon: BookOpen,
@@ -47,20 +49,30 @@ export function Sidebar() {
   return (
     <div className="fixed left-0 top-0 z-30 flex h-full w-16 flex-col items-center border-r bg-background py-4 md:w-[240px]">
       <div className="flex flex-col items-center justify-center py-4">
-        <div className="relative h-12 w-12 md:h-24 md:w-24">
-          <Image 
-            src="/icon.png" 
-            alt="AoE II Guía Logo" 
-            fill 
-            className="object-contain"
-            priority
-          />
-        </div>
+        <Link href="/">
+          <div className="relative h-12 w-12 md:h-24 md:w-24">
+            <Image 
+              src="/icon.png" 
+              alt="AoE II Guía Logo" 
+              fill 
+              className="object-contain"
+              priority
+              unoptimized
+            />
+          </div>
+        </Link>
       </div>
 
       <div className="mt-8 flex w-full flex-col space-y-2 px-2">
         {routes.map((route) => (
-          <Link key={route.href} href={route.href}>
+          <TransitionLink 
+            key={route.href} 
+            href={route.href}
+            transitionName={
+              route.transitionName || 
+              `route-${route.href.replace(/\//g, '').length ? route.href.replace(/\//g, '') : 'index'}`
+            }
+          >
             <Button
               variant="ghost"
               className={cn(
@@ -71,7 +83,7 @@ export function Sidebar() {
               <route.icon className="h-5 w-5" />
               <span className="hidden truncate md:inline-block">{route.label}</span>
             </Button>
-          </Link>
+          </TransitionLink>
         ))}
       </div>
     </div>

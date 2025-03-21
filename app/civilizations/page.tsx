@@ -1,9 +1,9 @@
-import Link from "next/link"
 import { ArrowLeft, Search } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
+import TransitionLink from "@/components/transition-link"
 
 export default function CivilizationsPage() {
   // Esto sería reemplazado con datos reales de una base de datos o API
@@ -26,12 +26,12 @@ export default function CivilizationsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
-        <Link href="/">
+        <TransitionLink href="/" transitionName="route-home">
           <Button variant="ghost" className="flex items-center gap-2 pl-0">
             <ArrowLeft className="h-4 w-4" />
             Volver al Inicio
           </Button>
-        </Link>
+        </TransitionLink>
       </div>
 
       <header className="mb-8 text-center">
@@ -48,7 +48,11 @@ export default function CivilizationsPage() {
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {civilizations.map((civ) => (
-          <Link key={civ.id} href={`/civilizations/${civ.id}`}>
+          <TransitionLink 
+            key={civ.id} 
+            href={`/civilizations/${civ.id}`}
+            transitionName={`civ-${civ.id}`}
+          >
             <Card className="h-full transition-all hover:border-primary hover:shadow-md">
               <CardHeader>
                 <CardTitle>{civ.name}</CardTitle>
@@ -61,7 +65,7 @@ export default function CivilizationsPage() {
                 </Button>
               </CardContent>
             </Card>
-          </Link>
+          </TransitionLink>
         ))}
       </div>
     </div>

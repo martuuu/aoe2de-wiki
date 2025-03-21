@@ -1,4 +1,4 @@
-import Link from "next/link"
+import TransitionLink from "@/components/transition-link"
 import { BookOpen, Users, Crosshair, Swords, Lightbulb } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -57,7 +57,7 @@ export default function HomePage() {
               <h2 className="text-2xl font-bold">{section.title}</h2>
             </div>
             <p className="mb-6 text-muted-foreground">{section.description}</p>
-            <Link href={section.href}>
+            <TransitionLink href={section.href}>
               <Button className="w-full">
                 {section.title === "Guías Paso a Paso"
                   ? "Ver Guías"
@@ -65,7 +65,7 @@ export default function HomePage() {
                     ? "Explorar Civilizaciones"
                     : "Ver Detalles"}
               </Button>
-            </Link>
+            </TransitionLink>
           </div>
         ))}
       </div>

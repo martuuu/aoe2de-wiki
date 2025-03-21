@@ -1,5 +1,5 @@
 import Image from "next/image"
-import Link from "next/link"
+import TransitionLink from "@/components/transition-link"
 import { ArrowLeft, Castle, Crown, Shield, Swords, BookOpen } from "lucide-react"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
@@ -119,12 +119,12 @@ export default async function CivilizationPage({
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
-        <Link href="/civilizations">
+        <TransitionLink href="/civilizations">
           <Button variant="ghost" className="flex items-center gap-2 pl-0">
             <ArrowLeft className="h-4 w-4" />
             Volver a Civilizaciones
           </Button>
-        </Link>
+        </TransitionLink>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-3">
@@ -325,21 +325,21 @@ export default async function CivilizationPage({
           <div className="rounded-lg border bg-card p-6">
             <h3 className="mb-4 text-xl font-semibold">Civilizaciones Similares</h3>
             <div className="space-y-3">
-              <Link href="/civilizations/franks" className="block rounded-md p-2 transition-colors hover:bg-accent">
+              <TransitionLink href="/civilizations/franks" className="block rounded-md p-2 transition-colors hover:bg-accent">
                 <div className="font-medium">Francos</div>
                 <div className="text-sm text-muted-foreground">Enfoque similar en caballería</div>
-              </Link>
-              <Link
+              </TransitionLink>
+              <TransitionLink
                 href="/civilizations/lithuanians"
                 className="block rounded-md p-2 transition-colors hover:bg-accent"
               >
                 <div className="font-medium">Lituanos</div>
                 <div className="text-sm text-muted-foreground">Caballería fuerte y economía</div>
-              </Link>
-              <Link href="/civilizations/magyars" className="block rounded-md p-2 transition-colors hover:bg-accent">
+              </TransitionLink>
+              <TransitionLink href="/civilizations/magyars" className="block rounded-md p-2 transition-colors hover:bg-accent">
                 <div className="font-medium">Magiares</div>
                 <div className="text-sm text-muted-foreground">Civilización centrada en caballería</div>
-              </Link>
+              </TransitionLink>
             </div>
           </div>
         </div>

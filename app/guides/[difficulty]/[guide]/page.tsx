@@ -1,4 +1,4 @@
-import Link from "next/link"
+import TransitionLink from "@/components/transition-link"
 import { ArrowLeft } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -83,12 +83,12 @@ export default function GuidePage({ params }: any) {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
-        <Link href="/guides">
+        <TransitionLink href="/guides">
           <Button variant="ghost" className="flex items-center gap-2 pl-0">
             <ArrowLeft className="h-4 w-4" />
             Volver a Guías
           </Button>
-        </Link>
+        </TransitionLink>
       </div>
 
       <header className="mb-8">

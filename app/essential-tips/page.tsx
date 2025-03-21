@@ -1,4 +1,4 @@
-import Link from "next/link"
+import TransitionLink from "@/components/transition-link"
 import { ArrowLeft, Lightbulb, Coins, Crosshair, Swords, Target } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
@@ -135,12 +135,12 @@ export default function EssentialTipsPage() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
-        <Link href="/">
+        <TransitionLink href="/">
           <Button variant="ghost" className="flex items-center gap-2 pl-0">
             <ArrowLeft className="h-4 w-4" />
             Volver al Inicio
           </Button>
-        </Link>
+        </TransitionLink>
       </div>
 
       <header className="mb-8 text-center">
