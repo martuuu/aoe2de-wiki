@@ -1,8 +1,5 @@
 {
-  "/guides/page": "app/guides/page.js",
-  "/page": "app/page.js",
-  "/unique-counters/page": "app/unique-counters/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/civilizations/page": "app/civilizations/page.js",
-  "/counter-units/page": "app/counter-units/page.js",
-  "/essential-tips/page": "app/essential-tips/page.js"
+  "/civilizations/[civilization]/page": "app/civilizations/[civilization]/page.js"
 }
