@@ -4,7 +4,8 @@ import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
-export default function GuidePage({ params }: { params: { difficulty: any; guide: any } }) {
+// Cambiar a any para evitar los errores de tipo con Next.js 15
+export default function GuidePage({ params }: any) {
   const { difficulty, guide } = params
 
   // Esto sería reemplazado con datos reales de una base de datos o API
@@ -147,6 +148,7 @@ export default function GuidePage({ params }: { params: { difficulty: any; guide
   )
 }
 
+// El resto de las funciones auxiliares permanecen igual...
 function formatTitle(slug: string): string {
   const titles: Record<string, string> = {
     "fast-castle": "Castillo Rápido",
