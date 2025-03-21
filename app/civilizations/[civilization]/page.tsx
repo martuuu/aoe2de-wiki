@@ -9,19 +9,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-// Definir los tipos estáticos correctos para Next.js 15
-type PageParams = {
-  civilization: string;
-}
-
-type PageProps = {
-  params: PageParams;
-  searchParams?: Record<string, string | string[] | undefined>;
-}
-
-export async function generateMetadata({ 
-  params 
-}: PageProps): Promise<Metadata> {
+// Simplificar usando any para los parámetros
+export async function generateMetadata({ params }: any): Promise<Metadata> {
   return {
     title: `${params.civilization} - Guía de Age of Empires II`,
     description: `Información completa sobre la civilización ${params.civilization} en Age of Empires II`,
@@ -31,7 +20,7 @@ export async function generateMetadata({
 // Elimina completamente la interfaz y utiliza la definición directamente
 export default async function CivilizationPage({ 
   params 
-}: PageProps) {
+}: any) {
   const { civilization } = params
   
   // Aquí normalmente obtendrías datos sobre la civilización
