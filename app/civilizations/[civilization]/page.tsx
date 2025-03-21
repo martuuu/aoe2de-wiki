@@ -9,36 +9,33 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-// Define correctamente los tipos para los params
-type CivilizationPageProps = {
+// Define la interfaz para los parámetros de la página
+interface PageProps {
   params: {
     civilization: string
   }
 }
 
-// Define la función para generar metadatos dinámicos (opcional)
+// Función para generar metadata dinámicos
 export async function generateMetadata({ 
   params 
-}: CivilizationPageProps): Promise<Metadata> {
-  const civilization = params.civilization
-
-  // Validar si la civilización existe
-  // Si no existe, podría retornar notFound() aquí también
-
+}: PageProps): Promise<Metadata> {
   return {
-    title: `${civilization} - Guía de Age of Empires II`,
-    description: `Guía completa para jugar con la civilización ${civilization} en Age of Empires II`,
+    title: `${params.civilization} - Guía de Age of Empires II`,
+    description: `Información completa sobre la civilización ${params.civilization} en Age of Empires II`,
   }
 }
 
-// Componente de la página
-export default async function CivilizationPage({ 
-  params 
-}: CivilizationPageProps) {
+// Componente de página
+export default async function CivilizationPage({ params }: PageProps) {
+  // Extraer el parámetro de civilización
   const { civilization } = params
-
-  // Aquí podrías obtener los datos de la civilización
-  // Si la civilización no existe, muestra la página 404
+  
+  // Aquí normalmente obtendrías datos sobre la civilización
+  // Por ejemplo:
+  // const civData = await getCivilizationData(civilization)
+  
+  // Si no se encuentra la civilización
   if (!civilization) {
     notFound()
   }
