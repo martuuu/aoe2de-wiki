@@ -12,7 +12,11 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Guía de Age of Empires II",
   description: "Tu guía completa para dominar Age of Empires II",
-    generator: 'Martuuu'
+  generator: 'Martuuu',
+  icons: {
+    icon: '/icon.png',
+    apple: '/icon.png',
+  }
 }
 
 export default function RootLayout({
@@ -38,7 +42,5 @@ export default function RootLayout({
     </html>
   )
 }
-
-
 
 import './globals.css'

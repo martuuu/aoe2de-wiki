@@ -1,14 +1,47 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowLeft, Castle, Crown, Shield, Swords, BookOpen } from "lucide-react"
+import type { Metadata } from "next"
+import { notFound } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-export default function CivilizationPage({ params }: { params: { civilization: string } }) {
+// Define correctamente los tipos para los params
+type CivilizationPageProps = {
+  params: {
+    civilization: string
+  }
+}
+
+// Define la función para generar metadatos dinámicos (opcional)
+export async function generateMetadata({ 
+  params 
+}: CivilizationPageProps): Promise<Metadata> {
+  const civilization = params.civilization
+
+  // Validar si la civilización existe
+  // Si no existe, podría retornar notFound() aquí también
+
+  return {
+    title: `${civilization} - Guía de Age of Empires II`,
+    description: `Guía completa para jugar con la civilización ${civilization} en Age of Empires II`,
+  }
+}
+
+// Componente de la página
+export default async function CivilizationPage({ 
+  params 
+}: CivilizationPageProps) {
   const { civilization } = params
+
+  // Aquí podrías obtener los datos de la civilización
+  // Si la civilización no existe, muestra la página 404
+  if (!civilization) {
+    notFound()
+  }
 
   // Esto sería reemplazado con datos reales de una base de datos o API
   const civData = {
