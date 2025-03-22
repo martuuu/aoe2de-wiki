@@ -9,111 +9,36 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-// Simplificar usando any para los parámetros
+import { getCivilization } from "@/data/civilizations"
+
+// Generar metadata con datos reales
 export async function generateMetadata({ params }: any): Promise<Metadata> {
+  const civData = getCivilization(params.civilization)
+  
+  if (!civData) {
+    return {
+      title: "Civilización no encontrada",
+      description: "La civilización solicitada no existe en nuestra base de datos."
+    }
+  }
+  
   return {
-    title: `${params.civilization} - Guía de Age of Empires II`,
-    description: `Información completa sobre la civilización ${params.civilization} en Age of Empires II`,
+    title: `${civData.name} - Guía de Age of Empires II`,
+    description: `Información completa sobre la civilización ${civData.name} en Age of Empires II`,
   }
 }
 
-// Elimina completamente la interfaz y utiliza la definición directamente
 export default async function CivilizationPage({ 
   params 
 }: any) {
   const { civilization } = params
   
-  // Aquí normalmente obtendrías datos sobre la civilización
-  // Por ejemplo:
-  // const civData = await getCivilizationData(civilization)
+  // Obtener datos de la civilización
+  const civData = getCivilization(civilization)
   
   // Si no se encuentra la civilización
-  if (!civilization) {
+  if (!civData) {
     notFound()
-  }
-
-  // Esto sería reemplazado con datos reales de una base de datos o API
-  const civData = {
-    name: formatName(civilization),
-    description: "Una civilización poderosa con fuertes bonificaciones económicas y unidades militares únicas.",
-    region: "Europa Occidental",
-    specialty: "Caballería y Economía",
-    image: `/placeholder.svg?height=300&width=300`,
-    quickGuide: {
-      strengths:
-        "Excelente caballería con bonificaciones de PV y velocidad de ataque. Economía agrícola fuerte con mejoras gratuitas.",
-      strategy:
-        "Utiliza Castillo Rápido a Caballeros como estrategia principal. Aprovecha tus granjas gratuitas para una economía sólida y presiona con caballería en la Edad de los Castillos.",
-      tips: "Construye castillos agresivamente aprovechando su descuento. Combina caballería con algunas unidades a distancia para contrarrestar piqueros.",
-    },
-    bonuses: [
-      "Caballería +20% PV desde la Edad Feudal",
-      "Mejoras de granjas gratuitas",
-      "Castillos cuestan -25%",
-      "Caballería ataca 25% más rápido desde la Edad de los Castillos",
-      "Pueden construir Torreones",
-    ],
-    uniqueUnits: [
-      {
-        name: "Paladín",
-        description: "Unidad de caballería pesada con alto ataque y PV",
-        strengths: ["Fuerte contra arqueros", "Bueno contra infantería", "Alta movilidad"],
-        weaknesses: ["Vulnerable a piqueros", "Costoso", "Lento de producir"],
-      },
-      {
-        name: "Cañonero de Mano",
-        description: "Unidad de pólvora con alto ataque pero velocidad de disparo lenta",
-        strengths: ["Fuerte contra infantería", "Alto daño", "Buen alcance"],
-        weaknesses: ["Débil contra caballería", "Velocidad de disparo lenta", "Impreciso"],
-      },
-    ],
-    uniqueTechs: [
-      {
-        name: "Caballería",
-        age: "Edad de los Castillos",
-        description: "Establos trabajan 40% más rápido",
-        cost: "300 Alimento, 300 Oro",
-      },
-      {
-        name: "Hacha Barbuda",
-        age: "Edad Imperial",
-        description: "Lanzadores de Hachas +1 alcance",
-        cost: "500 Alimento, 250 Oro",
-      },
-    ],
-    teamBonus: "Caballeros +2 línea de visión",
-    strategies: [
-      {
-        title: "Castillo Rápido a Caballeros",
-        description:
-          "Utiliza las fuertes bonificaciones de caballería de la civilización con una estrategia de Castillo Rápido a Caballeros.",
-        steps: [
-          "Sigue una orden de construcción estándar de Castillo Rápido",
-          "Prioriza la minería de oro en la Edad de los Castillos temprana",
-          "Construye 2-3 establos y produce Caballeros continuamente",
-          "Añade un Monasterio para Monjes que apoyen a tus Caballeros",
-          "Investiga Líneas de Sangre y Cría Caballar tan pronto como sea posible",
-          "Añade Centros Urbanos y expande tu economía detrás de tu agresión con Caballeros",
-        ],
-      },
-      {
-        title: "Juego con Arqueros a Caballo",
-        description:
-          "Combina las bonificaciones de caballería de la civilización con Arqueros a Caballo para un ejército móvil.",
-        steps: [
-          "Abre con Exploradores en la Edad Feudal",
-          "Transiciona a Arqueros a Caballo en la Edad de los Castillos",
-          "Añade Caballeros para proteger a tus Arqueros a Caballo",
-          "Investiga Anillo del Pulgar y Líneas de Sangre",
-          "Añade más Galerías de Tiro y Establos mientras expandes tu economía",
-          "Transiciona a Paladines y Arqueros a Caballo Pesados en la Edad Imperial",
-        ],
-      },
-    ],
-    counters: {
-      strongAgainst: ["Arqueros", "Armas de asedio", "Monjes"],
-      weakAgainst: ["Piqueros", "Jinetes de Camello", "Monjes con conversión"],
-    },
   }
 
   return (
@@ -130,7 +55,12 @@ export default async function CivilizationPage({
       <div className="grid gap-8 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <header className="mb-6">
-            <h1 className="mb-2 text-3xl font-bold text-primary md:text-4xl">{civData.name}</h1>
+            <h1 
+              className="mb-2 text-3xl font-bold text-primary md:text-4xl"
+              style={{ viewTransitionName: `civ-name-${civData.id}` }}
+            >
+              {civData.name}
+            </h1>
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
               <span className="flex items-center gap-1">
                 <Shield className="h-4 w-4" />
@@ -289,11 +219,12 @@ export default async function CivilizationPage({
         <div className="space-y-6">
           <div className="overflow-hidden rounded-lg border">
             <Image
-              src={civData.image || "/placeholder.svg"}
+              src={civData.image}
               alt={`Civilización ${civData.name}`}
               width={300}
               height={300}
               className="w-full object-cover"
+              style={{ viewTransitionName: `civ-image-${civData.id}` }}
             />
           </div>
 
@@ -313,11 +244,11 @@ export default async function CivilizationPage({
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div className="font-medium">Dificultad:</div>
-                <div className="text-muted-foreground">Intermedio</div>
+                <div className="text-muted-foreground">{civData.difficulty}</div>
               </div>
               <div className="grid grid-cols-2 gap-2">
                 <div className="font-medium">Estilo de Juego:</div>
-                <div className="text-muted-foreground">Agresivo</div>
+                <div className="text-muted-foreground">{civData.playstyle}</div>
               </div>
             </div>
           </div>
@@ -325,53 +256,21 @@ export default async function CivilizationPage({
           <div className="rounded-lg border bg-card p-6">
             <h3 className="mb-4 text-xl font-semibold">Civilizaciones Similares</h3>
             <div className="space-y-3">
-              <TransitionLink href="/civilizations/franks" className="block rounded-md p-2 transition-colors hover:bg-accent">
-                <div className="font-medium">Francos</div>
-                <div className="text-sm text-muted-foreground">Enfoque similar en caballería</div>
-              </TransitionLink>
-              <TransitionLink
-                href="/civilizations/lithuanians"
-                className="block rounded-md p-2 transition-colors hover:bg-accent"
-              >
-                <div className="font-medium">Lituanos</div>
-                <div className="text-sm text-muted-foreground">Caballería fuerte y economía</div>
-              </TransitionLink>
-              <TransitionLink href="/civilizations/magyars" className="block rounded-md p-2 transition-colors hover:bg-accent">
-                <div className="font-medium">Magiares</div>
-                <div className="text-sm text-muted-foreground">Civilización centrada en caballería</div>
-              </TransitionLink>
+              {civData.similarCivs.map((similar, index) => (
+                <TransitionLink 
+                  key={index}
+                  href={`/civilizations/${similar.id}`} 
+                  className="block rounded-md p-2 transition-colors hover:bg-accent"
+                >
+                  <div className="font-medium">{similar.name}</div>
+                  <div className="text-sm text-muted-foreground">{similar.reason}</div>
+                </TransitionLink>
+              ))}
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
-}
-
-function formatName(slug: string): string {
-  const names: Record<string, string> = {
-    aztecs: "Aztecas",
-    berbers: "Bereberes",
-    britons: "Britones",
-    bulgarians: "Búlgaros",
-    burgundians: "Borgoñones",
-    burmese: "Birmanos",
-    byzantines: "Bizantinos",
-    celts: "Celtas",
-    chinese: "Chinos",
-    cumans: "Cumanos",
-    ethiopians: "Etíopes",
-    franks: "Francos",
-    lithuanians: "Lituanos",
-    magyars: "Magiares",
-  }
-
-  return (
-    names[slug] ||
-    slug
-      .split("-")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(" ")
   )
 }
 

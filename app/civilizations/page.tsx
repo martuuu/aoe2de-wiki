@@ -1,81 +1,165 @@
-import { ArrowLeft, Search } from "lucide-react"
-import Image from "next/image"
+"use client"
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import TransitionLink from "@/components/transition-link"
+import { useState } from 'react'
+import Image from 'next/image'
+import TransitionLink from '@/components/transition-link'
+import { Search } from 'lucide-react'
+import { useViewTransition } from '@/hooks/use-view-transition'
+
+import { Input } from '@/components/ui/input'
+import { getAllCivilizations } from '@/data/civilizations'
 
 export default function CivilizationsPage() {
-  const civilizations = [
-    { id: "aztecs", name: "Aztecas", region: "Mesoamericana", specialty: "Infantería y Monjes", icon: "/assets/aztecas.webp" },
-    { id: "berbers", name: "Bereberes", region: "Africana", specialty: "Caballería y Naval", icon: "/assets/bereberes.webp" },
-    { id: "britons", name: "Britones", region: "Europa Occidental", specialty: "Arqueros", icon: "/assets/britanos.webp" },
-    { id: "bulgarians", name: "Búlgaros", region: "Europa Oriental", specialty: "Infantería y Caballería", icon: "/assets/bulgaros.webp" },
-    { id: "burgundians", name: "Borgoñones", region: "Europa Occidental", specialty: "Caballería y Economía", icon: "/assets/borgonones.webp" },
-    { id: "burmese", name: "Birmanos", region: "Sudeste Asiático", specialty: "Monjes y Caballería", icon: "/assets/birmanos.webp" },
-    { id: "byzantines", name: "Bizantinos", region: "Mediterránea", specialty: "Defensiva y Versátil", icon: "/assets/bizantinos.webp" },
-    { id: "celts", name: "Celtas", region: "Europa Occidental", specialty: "Infantería y Asedio", icon: "/assets/celtas.webp" },
-    { id: "chinese", name: "Chinos", region: "Asia Oriental", specialty: "Arqueros y Economía", icon: "/assets/chinos.webp" },
-    { id: "cumans", name: "Cumanos", region: "Europa Oriental", specialty: "Caballería y Asedio", icon: "/assets/cumanos.webp" },
-    { id: "ethiopians", name: "Etíopes", region: "Africana", specialty: "Arqueros y Asedio", icon: "/assets/ethiopes.webp" },
-    { id: "franks", name: "Francos", region: "Europa Occidental", specialty: "Caballería", icon: "/assets/francos.webp" },
-  ]
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const viewTransition = useViewTransition()
+
+  const allCivilizations = getAllCivilizations()
+  
+  // Obtener todas las categorías únicas de todas las civilizaciones
+  const allCategories: string[] = Array.from(
+    new Set(
+      allCivilizations.flatMap(civ => (civ as any).categories || [])
+    )
+  ).sort();
+  
+  // Función para filtrar civilizaciones basado en búsqueda y categoría
+  const filteredCivilizations = allCivilizations.filter(civ => {
+    const matchesSearch = civ.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         civ.specialty.toLowerCase().includes(searchTerm.toLowerCase())
+    
+    // Use type assertion to handle the optional categories property
+    const civCategories = (civ as any).categories || []
+    const matchesCategory = selectedCategory 
+      ? civCategories.includes(selectedCategory)
+      : true
+    
+    return matchesSearch && matchesCategory
+  })
+
+  // Función para actualizar el término de búsqueda con animación
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newSearchTerm = e.target.value
+    viewTransition(() => {
+      setSearchTerm(newSearchTerm)
+    })
+  }
+
+  // Función para seleccionar categoría con animación
+  const handleCategorySelect = (category: string | null) => {
+    viewTransition(() => {
+      // Simplifica la lógica para hacer más consistente la transición
+      setSelectedCategory(category === selectedCategory ? null : category);
+    });
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <h1 className="mb-6 text-3xl font-bold">Civilizaciones</h1>
+      
+      {/* Buscador */}
       <div className="mb-6">
-        <TransitionLink href="/" transitionName="route-home">
-          <Button variant="ghost" className="flex items-center gap-2 pl-0">
-            <ArrowLeft className="h-4 w-4" />
-            Volver al Inicio
-          </Button>
-        </TransitionLink>
-      </div>
-
-      <header className="mb-8 text-center">
-        <h1 className="mb-4 text-3xl font-bold text-primary md:text-4xl">Guía de Civilizaciones</h1>
-        <p className="mx-auto mb-6 max-w-2xl text-muted-foreground">
-          Explora las 43 civilizaciones de Age of Empires II y aprende sus fortalezas y estrategias únicas
-        </p>
-
-        <div className="mx-auto flex max-w-md items-center space-x-2">
-          <Search className="h-5 w-5 text-muted-foreground" />
-          <Input type="search" placeholder="Buscar civilizaciones..." className="flex-1" />
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            placeholder="Buscar civilizaciones..."
+            className="pl-10"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
         </div>
-      </header>
-
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {civilizations.map((civ) => (
-          <TransitionLink 
-            key={civ.id} 
-            href={`/civilizations/${civ.id}`}
-            transitionName={`civ-${civ.id}`}
+      </div>
+      
+      {/* Filtros de categoría */}
+      <div className="mb-8">
+        <h2 className="mb-3 text-sm font-medium text-muted-foreground">Filtrar por estilo:</h2>
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => handleCategorySelect(null)}
+            className={`rounded-full px-4 py-1 text-sm transition-colors ${
+              selectedCategory === null
+                ? 'bg-accent text-accent-foreground'
+                : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+            }`}
           >
-            <Card className="h-full transition-all hover:border-primary hover:shadow-md">
-              <CardHeader className="flex flex-row items-center justify-between pb-2">
-                <div>
-                  <CardTitle>{civ.name}</CardTitle>
-                  <CardDescription>{civ.region}</CardDescription>
-                </div>
-                <Image 
-                  src={civ.icon || `/assets/${civ.id}.webp`}
-                  alt={`Ícono de ${civ.name}`}
-                  width={48}
-                  height={48}
-                  className="h-12 w-12 rounded-md object-cover"
+            Todas
+          </button>
+          {allCategories.map((category) => (
+            <button
+              key={category}
+              onClick={() => handleCategorySelect(category)}
+              className={`rounded-full px-4 py-1 text-sm transition-colors ${
+                selectedCategory === category
+                  ? 'bg-accent text-accent-foreground'
+                  : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+              }`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+      
+      {/* Grid de civilizaciones */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+        {filteredCivilizations.map((civ) => (
+          <TransitionLink key={civ.id} href={`/civilizations/${civ.id}`} className="h-full">
+            <div className="h-full rounded-lg border bg-card shadow transition-all hover:bg-accent">
+              <div className="relative aspect-square overflow-hidden rounded-t-lg">
+                <Image
+                  src={civ.image}
+                  alt={civ.name}
+                  width={180}
+                  height={180}
+                  className="h-full w-full object-cover p-3"
+                  style={{ viewTransitionName: `civ-image-${civ.id}` }}
                 />
-              </CardHeader>
-              <CardContent>
-                <p className="mb-4 text-sm text-muted-foreground">Especialidad: {civ.specialty}</p>
-                <Button variant="outline" className="w-full">
-                  Ver Detalles
-                </Button>
-              </CardContent>
-            </Card>
+              </div>
+              <div className="flex h-full flex-col p-4">
+                <h2 
+                  className="mb-2 text-xl font-bold"
+                  style={{ viewTransitionName: `civ-name-${civ.id}` }}
+                >
+                  {civ.name}
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  <div className="text-sm text-muted-foreground">{civ.region}</div>
+                  <div className="text-sm text-muted-foreground">•</div>
+                  <div className="text-sm text-muted-foreground">{civ.specialty}</div>
+                </div>
+                {civ.categories && civ.categories.length > 0 && (
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {civ.categories.map((cat, idx) => (
+                      <button
+                        key={idx}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleCategorySelect(cat);
+                        }}
+                        className={`rounded-full px-2 py-0.5 text-xs transition-colors ${
+                          selectedCategory === cat 
+                            ? 'bg-accent/30 text-muted-foreground' 
+                            : 'bg-accent/30 text-muted-foreground hover:bg-accent/50 hover:text-accent-foreground'
+                        }`}
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
           </TransitionLink>
         ))}
       </div>
+      
+      {filteredCivilizations.length === 0 && (
+        <div className="mt-8 text-center">
+          <p className="text-lg text-muted-foreground">
+            No se encontraron civilizaciones que coincidan con tu búsqueda.
+          </p>
+        </div>
+      )}
     </div>
   )
 }
