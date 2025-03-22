@@ -956,7 +956,7 @@ export const civilizationsData: Record<string, CivilizationData> = {
     description: "Civilización versátil del Medio Oriente con excelentes unidades de camello, arqueros y economía basada en el mercado, representando a los califatos medievales árabes.",
     region: "Medio Oriente",
     specialty: "Camellos y Mercado",
-    image: "/assets/sarracenos.webp",
+    image: "/assets/saracenos.webp",
     difficulty: "Difícil",
     playstyle: "Adaptable",
     quickGuide: {
