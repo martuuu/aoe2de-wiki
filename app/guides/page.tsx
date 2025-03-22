@@ -178,18 +178,19 @@ export default function GuidesPage() {
             </div>
             <p className="text-muted-foreground">{difficulty.description}</p>
 
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {difficulty.guides.map((guide) => (
                 <TransitionLink
                   key={guide.id}
                   href={`/guides/${difficulty.level.toLowerCase()}/${guide.id}`}
+                  className="h-full"
                 >
-                  <Card className="h-full transition-all hover:border-primary hover:shadow-md">
+                  <Card className="flex h-full gap-4 flex-col justify-between transition-all hover:border-primary hover:shadow-md">
                     <CardHeader>
-                      <CardTitle>{guide.title}</CardTitle>
+                      <CardTitle className='pt-2 pb-2'>{guide.title}</CardTitle>
                       <CardDescription>{guide.description}</CardDescription>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="mt-auto">
                       <Button variant="outline" className="w-full">
                         Ver Guía
                       </Button>

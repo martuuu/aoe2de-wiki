@@ -1,7 +1,7 @@
 {
   "/page": "app/page.js",
   "/civilizations/page": "app/civilizations/page.js",
-  "/guides/page": "app/guides/page.js",
+  "/counter-units/page": "app/counter-units/page.js",
   "/civilizations/[civilization]/page": "app/civilizations/[civilization]/page.js",
-  "/guides/[difficulty]/[guide]/page": "app/guides/[difficulty]/[guide]/page.js"
+  "/guides/page": "app/guides/page.js"
 }

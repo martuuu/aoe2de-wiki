@@ -688,11 +688,11 @@ export const civilizationsData3: Record<string, CivilizationData> = {
   
   burgundians: {
     id: "burgundians",
-    name: "Borgoñones",
+    name: "Borgoñeses",
     description: "Civilización europea occidental con caballería económica, mejoras tempranas y unidades especiales que generan oro, representando al Ducado de Borgoña medieval.",
     region: "Europa Occidental",
     specialty: "Caballería y Economía",
-    image: "/assets/borgonones.webp",
+    image: "/assets/borgoneses.webp",
     difficulty: "Difícil",
     playstyle: "Económico-Técnico",
     categories: ["Caballería", "Boom Económico", "Unidad Única", "Fast Castle"],
