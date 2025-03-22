@@ -1,9 +1,24 @@
-import TransitionLink from "@/components/transition-link"
-import { BookOpen, Users, Crosshair, Swords, Lightbulb } from "lucide-react"
+"use client"
 
+import TransitionLink from "@/components/transition-link"
+import { ArrowRight, BookOpen, Crosshair, Lightbulb, Search, Swords, Users } from "lucide-react"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { useRouter } from "next/navigation"
 
 export default function HomePage() {
+  const [searchTerm, setSearchTerm] = useState("")
+  const router = useRouter()
+  
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchTerm) {
+      // Redirigir a la página de civilizaciones con el término de búsqueda
+      router.push(`/civilizations?search=${encodeURIComponent(searchTerm)}`)
+    }
+  }
+
   const sections = [
     {
       icon: BookOpen,
@@ -48,6 +63,27 @@ export default function HomePage() {
           Tu asistente en el juego para entender cómo jugar con cada civilización
         </p>
       </header>
+
+      {/* Formulario de búsqueda simple */}
+      <form onSubmit={handleSearch} className="mx-auto mb-12 max-w-md">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            placeholder="Buscar civilización..."
+            className="pl-10 pr-10"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <Button 
+            type="submit"
+            variant="ghost" 
+            size="icon"
+            className="absolute right-0 top-0 h-full"
+          >
+            <ArrowRight className="h-4 w-4 text-muted-foreground" />
+          </Button>
+        </div>
+      </form>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {sections.map((section) => (

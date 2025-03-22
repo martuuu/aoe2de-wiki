@@ -19,20 +19,24 @@ export default function GuidesPage() {
         "Perfecto para nuevos jugadores que están aprendiendo los conceptos básicos de Age of Empires II",
       guides: [
         {
-          id: "fast-castle",
-          title: "Castillo Rápido",
-          description:
-            "Una construcción económica segura para llegar rápidamente a la Edad de los Castillos",
+          id: "knight-rush",
+          title: "Rush de Caballeros con 25+4 Aldeanos",
+          description: "Construcción sencilla para nuevos jugadores enfocada en caballeros",
         },
         {
-          id: "scout-rush",
-          title: "Ataque con Exploradores",
-          description: "Agresión temprana con Caballería Exploradora",
+          id: "1-stable-scouts",
+          title: "Exploradores con 18 Aldeanos",
+          description: "Agresión temprana con Caballería Exploradora de un solo Establo",
         },
         {
-          id: "archer-build",
-          title: "Construcción de Arqueros",
-          description: "Apertura básica centrada en arqueros",
+          id: "1-range-archers",
+          title: "Arqueros con 19 Aldeanos",
+          description: "Apertura básica centrada en arqueros con una sola galería",
+        },
+        {
+          id: "fast-castle-boom",
+          title: "Castillo Rápido y Boom con 23+2 Aldeanos",
+          description: "Construcción económica segura para llegar rápidamente a la Edad de los Castillos",
         },
       ],
     },
@@ -43,21 +47,54 @@ export default function GuidesPage() {
         "Para jugadores familiarizados con el juego que buscan mejorar sus habilidades",
       guides: [
         {
-          id: "drush-fc",
-          title: "Drush a Castillo Rápido",
-          description:
-            "Presión temprana con milicia hacia la Edad de los Castillos",
+          id: "georgian-scout-rush",
+          title: "Rush con Exploradores Georgianos",
+          description: "Presión temprana con exploradores seguida de una transición a caballería Monaspa",
         },
         {
-          id: "men-at-arms",
-          title: "Ataque con Hombres de Armas",
-          description: "Presión agresiva en la Edad Feudal con infantería",
+          id: "japanese-man-at-arms",
+          title: "Rush de Hombres de Armas Japonés",
+          description: "Presión agresiva con hombres de armas utilizando los bonos japoneses",
         },
         {
-          id: "castle-drop",
-          title: "Colocación de Castillo",
-          description:
-            "Ubicación estratégica de castillos para control del mapa",
+          id: "scouts-into-archers",
+          title: "Exploradores en Arqueros",
+          description: "Construcción flexible que inicia con exploradores y transiciona a arqueros",
+        },
+        {
+          id: "double-barracks-eagles",
+          title: "Águilas de Doble Cuartel",
+          description: "Estrategia de presión Mesoamericana con dos cuarteles de águilas",
+        },
+        {
+          id: "feudal-drush",
+          title: "Drush Feudal con 18 Aldeanos",
+          description: "Presión temprana con milicia durante la transición a la Edad Feudal",
+        },
+        {
+          id: "korean-spear-skirm",
+          title: "Rush Coreano de Lanceros y Hostigadores",
+          description: "Estrategia de unidades de contraataque coreanas para presión temprana",
+        },
+        {
+          id: "eagle-range-feudal",
+          title: "Águilas y Galería en Feudal",
+          description: "Combinación potente de unidades mesoamericanas para presión feudal",
+        },
+        {
+          id: "fast-castle-unique",
+          title: "Castillo Rápido a Unidad Única",
+          description: "Construcción económica enfocada en conseguir un castillo temprano",
+        },
+        {
+          id: "light-cav-relics",
+          title: "Caballería Ligera y Control de Reliquias",
+          description: "Estrategia para mapas cerrados enfocada en controlar reliquias",
+        },
+        {
+          id: "armenian-spear-rush",
+          title: "Rush de Lanceros Armenios",
+          description: "Presión con lanceros armenios y transición a control de reliquias",
         },
       ],
     },
@@ -68,19 +105,44 @@ export default function GuidesPage() {
         "Estrategias complejas para jugadores experimentados que buscan dominar el juego",
       guides: [
         {
-          id: "hybrid-maps",
-          title: "Estrategias para Mapas Híbridos",
-          description: "Adaptación a mapas con múltiples recursos",
+          id: "anti-lame-fast-up",
+          title: "Anti-Lame Fast Up con 17 Aldeanos",
+          description: "Construcción avanzada para contrarrestar estrategias de sabotaje temprano",
         },
         {
-          id: "arena-strategies",
-          title: "Estrategias para Arena",
-          description: "Construcciones especializadas para mapas cerrados",
+          id: "cuman-2tc-boom",
+          title: "Boom Cumano con 2 CCs",
+          description: "Explotación del bono único cumano para ventaja económica",
         },
         {
-          id: "water-control",
-          title: "Control Naval",
-          description: "Dominando el juego naval",
+          id: "double-stable-scouts",
+          title: "Exploradores de Doble Establo",
+          description: "Presión máxima con exploradores de dos establos",
+        },
+        {
+          id: "modern-man-at-arms",
+          title: "Hombres de Armas Moderno",
+          description: "Versión actualizada y optimizada del rush de hombres de armas",
+        },
+        {
+          id: "scouts-into-ca",
+          title: "Exploradores a Arqueros a Caballo",
+          description: "Transición compleja hacia arqueros a caballo para dominio de mapa",
+        },
+        {
+          id: "ethiopian-2range",
+          title: "Arqueros Etíopes de 2 Galerías",
+          description: "Estrategia de equipo con etíopes enfocada en presión de arqueros",
+        },
+        {
+          id: "fishing-ship-build",
+          title: "Construcción con 3 Barcos Pesqueros",
+          description: "Adaptación a mapas híbridos con economía marítima temprana",
+        },
+        {
+          id: "turk-fast-imperial",
+          title: "Imperial Rápido Turco",
+          description: "Avance ultra rápido a la Era Imperial para sorprender con unidades de pólvora",
         },
       ],
     },

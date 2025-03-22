@@ -6,6 +6,11 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/page.js"
+    ],
     "/civilizations/loading": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -16,25 +21,20 @@
       "static/chunks/main-app.js",
       "static/chunks/app/civilizations/page.js"
     ],
-    "/civilizations/[civilization]/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/civilizations/[civilization]/page.js"
-    ],
-    "/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/page.js"
-    ],
     "/guides/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/guides/page.js"
     ],
-    "/_not-found/page": [
+    "/civilizations/[civilization]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/_not-found/page.js"
+      "static/chunks/app/civilizations/[civilization]/page.js"
+    ],
+    "/guides/[difficulty]/[guide]/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/guides/[difficulty]/[guide]/page.js"
     ]
   }
 }

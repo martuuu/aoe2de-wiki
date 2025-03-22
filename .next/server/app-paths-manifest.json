@@ -1,7 +1,7 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/civilizations/page": "app/civilizations/page.js",
   "/page": "app/page.js",
+  "/civilizations/page": "app/civilizations/page.js",
+  "/guides/page": "app/guides/page.js",
   "/civilizations/[civilization]/page": "app/civilizations/[civilization]/page.js",
-  "/guides/page": "app/guides/page.js"
+  "/guides/[difficulty]/[guide]/page": "app/guides/[difficulty]/[guide]/page.js"
 }

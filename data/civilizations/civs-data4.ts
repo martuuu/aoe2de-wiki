@@ -1019,10 +1019,10 @@ export const civilizationsData4: Record<string, CivilizationData> = {
     categories: ["Caballería", "Defensivo", "Monjes", "Unidad Única"],
     quickGuide: {
       strengths:
-        "Caballería con mayor armadura, minas y canteras más eficientes, y torres especializadas en terrenos elevados con bonificaciones defensivas.",
+        "Caballería con mayor armadura, minas y canteras más eficientes, torres especializadas en terrenos elevados, y capacidad de construir Torres de Vigilancia desde la Edad Oscura.",
       strategy:
-        "Establece una economía minera sólida, construye defensas fuertes en terrenos elevados, y utiliza caballería pesada y monjes para controlar el campo de batalla.",
-      tips: "Posiciona tus torres en terreno elevado para obtener bonificaciones sustanciales de daño y alcance. La caballería tiene +1 de armadura por edad, haciéndola extremadamente resistente en la Edad Imperial.",
+        "Desarrolla una economía equilibrada temprana, presiona con exploradores en Feudal mientras emparedes, y transiciona a caballería pesada o Monaspas en la Edad de los Castillos, aprovechando las Torres de Monasterio para protección.",
+      tips: "Construye Torres de Vigilancia tempranas en puntos estratégicos. La caballería Georgiana obtiene +1 armadura por edad, haciéndola excepcionalmente resistente. Posiciona tu Iglesia Fortificada (Monasterio) donde proteja mejor a tus aldeanos.",
     },
     bonuses: [
       "Caballería +1 armadura por edad",
@@ -1072,6 +1072,22 @@ export const civilizationsData4: Record<string, CivilizationData> = {
     ],
     teamBonus: "Las unidades en terreno elevado reciben -20% daño",
     strategies: [
+      // Añadir esta estrategia a las estrategias de los Georgianos
+      {
+        title: "Healing Scout Rush de 16 Aldeanos",
+        description:
+          "Estrategia de presión temprana con exploradores respaldados por la capacidad de curación superior de los Georgianos",
+        steps: [
+          "Desarrolla una economía equilibrada con 7 aldeanos en ovejas, 8 en caza, y prepara el paso a Feudal",
+          "Avanza a Feudal alrededor de los 8:00 minutos y construye un Establo",
+          "Produce exploradores y presiona mientras emparedes tu base con una mezcla de casas y empalizadas",
+          "Transiciona a una economía agrícola con 13-14 granjas, luego envía 7 aldeanos al oro",
+          "Avanza rápidamente a la Edad de los Castillos mientras sigues la presión",
+          "En Castillos, opta por 2 Establos con caballeros o un Castillo para spam de Monaspas",
+          "Construye una iglesia fortificada (Torre de Monasterio) para proteger tus aldeanos y añade monjes para reliquias",
+          "Expande con un segundo Centro Urbano en otra línea de madera",
+        ],
+      },
       {
         title: "Defensa en Altura",
         description:
