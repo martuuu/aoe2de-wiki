@@ -4,17 +4,28 @@ import type React from "react"
 
 import TransitionLink from "@/components/transition-link"
 import { ArrowLeft, Send, MessageSquare, ComputerIcon as Steam, XIcon as Xbox } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/components/ui/use-toast"
 import { ToastAction } from "@/components/ui/toast"
+import { useAlert, AlertProvider } from "@/components/alert-provider"
 
-export default function ContactPage() {
+export default function ContactPageWrapper() {
+  return (
+    <AlertProvider>
+      <ContactPage />
+    </AlertProvider>
+  )
+}
+
+function ContactPage() {
+  const router = useRouter()
+  const { showAlert } = useAlert()
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -24,6 +35,18 @@ export default function ContactPage() {
     message: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [successRedirect, setSuccessRedirect] = useState(false)
+
+  // Efecto para redirigir después de un envío exitoso
+  useEffect(() => {
+    if (successRedirect) {
+      const redirectTimer = setTimeout(() => {
+        router.push("/");
+      }, 2000);
+      
+      return () => clearTimeout(redirectTimer);
+    }
+  }, [successRedirect, router]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -45,7 +68,6 @@ export default function ContactPage() {
       subject: formData.subject,
       message: formData.message,
       _subject: `Consulta AoE II Guía: ${formData.subject}`,
-      // Eliminamos el campo email para evitar confusiones con Formspree
     }
     
     try {
@@ -62,13 +84,6 @@ export default function ContactPage() {
       const responseData = await response.json()
       
       if (response.ok) {
-        // Mostrar mensaje de éxito
-        toast({
-          title: "Mensaje enviado",
-          description: "Gracias por tu mensaje. Te responderemos lo antes posible.",
-          action: <ToastAction altText="Cerrar">Cerrar</ToastAction>,
-        })
-        
         // Resetear formulario
         setFormData({
           firstName: "",
@@ -78,16 +93,29 @@ export default function ContactPage() {
           subject: "",
           message: "",
         })
+        
+        // Mostrar alerta de éxito
+        showAlert({
+          variant: "success",
+          title: "Mensaje enviado correctamente",
+          description: "Gracias por tu mensaje. Intentaré responder lo antes posible.",
+          duration: 2000, // 2 segundos
+        })
+        
+        // Activar redirección
+        setSuccessRedirect(true)
+        
       } else {
         console.error('Error de Formspree:', responseData)
         throw new Error(responseData.error || 'Hubo un error al enviar el formulario')
       }
     } catch (error) {
-      toast({
-        variant: "destructive",
+      // Mostrar alerta de error
+      showAlert({
+        variant: "error",
         title: "Error al enviar",
         description: "No se pudo enviar tu mensaje. Por favor, intenta nuevamente más tarde.",
-        action: <ToastAction altText="Cerrar">Cerrar</ToastAction>,
+        duration: 5000, // 5 segundos para errores
       })
       console.error('Error enviando el formulario:', error)
     } finally {

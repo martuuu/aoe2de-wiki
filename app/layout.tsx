@@ -5,6 +5,7 @@ import { Inter } from "next/font/google"
 import { Sidebar } from "@/components/sidebar"
 import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import { AlertProvider } from "@/components/alert-provider"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
@@ -28,15 +29,17 @@ export default function RootLayout({
     <html lang="es">
       <body className={`${inter.className} flex min-h-screen flex-col`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <div className="flex flex-1">
-            <Sidebar />
-            <main className="flex-1 pl-16 md:pl-[240px]">
-              <div className="flex min-h-[calc(100vh-64px)] flex-col">
-                {children}
-                <Footer />
-              </div>
-            </main>
-          </div>
+          <AlertProvider>
+            <div className="flex flex-1">
+              <Sidebar />
+              <main className="flex-1 pl-16 md:pl-[240px]">
+                <div className="flex min-h-[calc(100vh-64px)] flex-col">
+                  {children}
+                  <Footer />
+                </div>
+              </main>
+            </div>
+          </AlertProvider>
         </ThemeProvider>
       </body>
     </html>
