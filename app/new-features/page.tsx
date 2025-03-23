@@ -81,8 +81,8 @@ export default function NewFeaturesPage() {
           Próximas Características
         </h1>
         <p className="mx-auto max-w-2xl text-muted-foreground">
-          Estamos constantemente trabajando para mejorar la guía y añadir nuevas
-          funcionalidades. Aquí puedes ver lo que estamos planeando para el
+          Se esta constantemente trabajando para mejorar la guía y añadir nuevas
+          funcionalidades. Acá podés ver lo que estamos planeando para el
           futuro.
         </p>
       </header>
@@ -114,7 +114,7 @@ export default function NewFeaturesPage() {
           <CardContent className="flex h-full flex-col items-center justify-between p-6 text-center">
             <div className="flex flex-col items-center flex-1 py-6">
               <PlusCircle className="mb-4 h-10 w-10 text-muted-foreground" />
-              <h3 className="mb-2 text-xl font-medium">¿Tienes alguna idea?</h3>
+              <h3 className="mb-2 text-xl font-medium">¿Tenés alguna idea?</h3>
               <p className="mb-4 text-muted-foreground">
                 Nos encantaría escuchar tus sugerencias para nuevas
                 características

@@ -20,35 +20,128 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function CommunityPage() {
+  // Datos actualizados del ranking
   const topPlayers = [
     {
       rank: 1,
-      name: "TheViper",
-      country: "Noruega",
-      elo: 2650,
-      winRate: "68%",
+      name: "GL.Hera",
+      country: "Canadá",
+      highestElo: 3009,
+      elo: 2982,
+      winRate: "72.12%",
+      wins: 3738,
+      losses: 1445,
+      totalGames: 5183,
+      streak: 7
     },
-    { rank: 2, name: "Hera", country: "Canadá", elo: 2620, winRate: "67%" },
-    { rank: 3, name: "Liereyy", country: "Austria", elo: 2610, winRate: "65%" },
-    { rank: 4, name: "TaToH", country: "España", elo: 2590, winRate: "64%" },
-    { rank: 5, name: "DauT", country: "Serbia", elo: 2580, winRate: "63%" },
-    { rank: 6, name: "MbL", country: "Noruega", elo: 2570, winRate: "62%" },
-    { rank: 7, name: "Yo", country: "China", elo: 2560, winRate: "61%" },
+    {
+      rank: 2,
+      name: "wR. Hearttt",
+      country: "China",
+      highestElo: 2940,
+      elo: 2857,
+      winRate: "65.28%",
+      wins: 3146,
+      losses: 1673,
+      totalGames: 4819,
+      streak: null
+    },
+    {
+      rank: 3,
+      name: "mYi.ACCM",
+      country: "Vietnam",
+      highestElo: 2892,
+      elo: 2818,
+      winRate: "68.47%",
+      wins: 2758,
+      losses: 1270,
+      totalGames: 4028,
+      streak: 3
+    },
+    {
+      rank: 4,
+      name: "TAG_MbL_",
+      country: "Noruega",
+      highestElo: 2955,
+      elo: 2805,
+      winRate: "66.34%",
+      wins: 5198,
+      losses: 2637,
+      totalGames: 7835,
+      streak: 1
+    },
+    {
+      rank: 5,
+      name: "_LY_抖音肥龙",
+      country: "China",
+      highestElo: 2848,
+      elo: 2786,
+      winRate: "66.97%",
+      wins: 436,
+      losses: 215,
+      totalGames: 651,
+      streak: null
+    },
+    {
+      rank: 6,
+      name: "Oni.Liereyy",
+      country: "Austria",
+      highestElo: 2901,
+      elo: 2772,
+      winRate: "66.58%",
+      wins: 1004,
+      losses: 504,
+      totalGames: 1508,
+      streak: 3
+    },
+    {
+      rank: 7,
+      name: "wR.Sebastian",
+      country: "Chile",
+      highestElo: 2915,
+      elo: 2772,
+      winRate: "57.01%",
+      wins: 1794,
+      losses: 1353,
+      totalGames: 3147,
+      streak: null
+    },
     {
       rank: 8,
-      name: "TheMax",
-      country: "Finlandia",
-      elo: 2550,
-      winRate: "60%",
+      name: "TAG_Sitaux",
+      country: "Francia",
+      highestElo: 2781,
+      elo: 2767,
+      winRate: "71.21%",
+      wins: 1472,
+      losses: 595,
+      totalGames: 2067,
+      streak: 9
     },
     {
       rank: 9,
-      name: "Villese",
-      country: "Finlandia",
-      elo: 2540,
-      winRate: "59%",
+      name: "wR.Nicov",
+      country: "Argentina",
+      highestElo: 2885,
+      elo: 2766,
+      winRate: "68.69%",
+      wins: 1858,
+      losses: 847,
+      totalGames: 2705,
+      streak: 4
     },
-    { rank: 10, name: "ACCM", country: "Vietnam", elo: 2530, winRate: "58%" },
+    {
+      rank: 10,
+      name: "Oni.Lewis",
+      country: "Reino Unido",
+      highestElo: 2803,
+      elo: 2737,
+      winRate: "52.73%",
+      wins: 3192,
+      losses: 2862,
+      totalGames: 6054,
+      streak: null
+    }
   ];
 
   const streamers = [
@@ -156,9 +249,7 @@ export default function CommunityPage() {
           Comunidad
         </h1>
         <p className="mx-auto max-w-2xl text-muted-foreground">
-          Conéctate con la vibrante comunidad de Age of Empires II, sigue a los
-          mejores jugadores y creadores de contenido, y mantente al día con los
-          últimos eventos y torneos.
+         Este recurso nunca hubiese sido posible sin la cantidad de documentación, videos, tutoriales y horas de streaming que la comunidad ha aportado. Aquí encontrarás una lista de los mejores streamers, comunidades y jugadores de AoE2. Gracias a todos! 😃
         </p>
       </header>
 
@@ -242,13 +333,13 @@ export default function CommunityPage() {
 
         <TabsContent value="ranking" className="space-y-6">
           <Card>
-            <CardHeader className="h-[88px]">
+            <CardHeader>
               <div className="flex items-center gap-2">
                 <Trophy className="h-5 w-5 text-yellow-500" />
                 <CardTitle>Top 10 Jugadores Ranked</CardTitle>
               </div>
               <CardDescription>
-                Clasificación actual de los mejores jugadores del mundo
+                Clasificación actual de los mejores jugadores del mundo (Actualizado: Marzo 2025)
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -256,17 +347,18 @@ export default function CommunityPage() {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b">
-                      <th className="px-4 py-2 text-left">Rank</th>
-                      <th className="px-4 py-2 text-left">Jugador</th>
-                      <th className="px-4 py-2 text-left">País</th>
-                      <th className="px-4 py-2 text-left">ELO</th>
-                      <th className="px-4 py-2 text-left">Win Rate</th>
+                      <th className="px-2 py-2 text-left">Rank</th>
+                      <th className="px-2 py-2 text-left">Jugador</th>
+                      <th className="px-2 py-2 text-left">ELO</th>
+                      <th className="px-2 py-2 text-left">Win Rate</th>
+                      <th className="px-2 py-2 text-left">Partidas</th>
+                      <th className="px-2 py-2 text-left">Racha</th>
                     </tr>
                   </thead>
                   <tbody>
                     {topPlayers.map((player) => (
-                      <tr key={player.rank} className="border-b">
-                        <td className="px-4 py-2">
+                      <tr key={player.rank} className="border-b hover:bg-accent/10">
+                        <td className="px-2 py-2">
                           {player.rank === 1 ? (
                             <span className="flex h-6 w-6 items-center justify-center rounded-full bg-yellow-500 text-white">
                               {player.rank}
@@ -283,14 +375,33 @@ export default function CommunityPage() {
                             player.rank
                           )}
                         </td>
-                        <td className="px-4 py-2 font-medium">{player.name}</td>
-                        <td className="px-4 py-2">{player.country}</td>
-                        <td className="px-4 py-2">{player.elo}</td>
-                        <td className="px-4 py-2">{player.winRate}</td>
+                        <td className="px-2 py-2">
+                          <div className="font-medium">{player.name}</div>
+                          <div className="text-xs text-muted-foreground">{player.country}</div>
+                        </td>
+                        <td className="px-2 py-2">
+                          <div className="font-medium">{player.elo}</div>
+                          <div className="text-xs text-muted-foreground">Máx: {player.highestElo}</div>
+                        </td>
+                        <td className="px-2 py-2">
+                          <div className="font-medium">{player.winRate}</div>
+                          <div className="text-xs text-muted-foreground">{player.wins}W / {player.losses}L</div>
+                        </td>
+                        <td className="px-2 py-2">{player.totalGames}</td>
+                        <td className="px-2 py-2">
+                          {player.streak ? (
+                            <span className={`font-medium ${player.streak > 0 ? "text-green-600" : "text-red-600"}`}>
+                              {player.streak > 0 ? "+" : ""}{player.streak}
+                            </span>
+                          ) : "-"}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
+              </div>
+              <div className="mt-4 text-xs text-muted-foreground text-right">
+                Fuente: aoe2.net - Datos de RM 1v1
               </div>
             </CardContent>
           </Card>

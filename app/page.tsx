@@ -102,7 +102,7 @@ export default function HomePage() {
       <header className="mb-12 text-center">
         <h1 className="mb-4 text-4xl font-bold text-primary md:text-5xl">Guía de Age of Empires II</h1>
         <p className="mx-auto max-w-2xl text-md text-muted-foreground">
-          Tu asistente en el juego para entender cómo jugar con cada civilización
+          Guia rápida de juego con cada civilizacion. Encuentra también guías paso a paso, contras de unidades y mucho más.
         </p>
       </header>
 
